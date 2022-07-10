@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include "IntQueue.h"
 
 int main() {
-	printf("Hello, World");
-	return 0;
+	IntQueueTest();
 }
