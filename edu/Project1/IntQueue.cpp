@@ -1,7 +1,7 @@
 #include "IntQueue.h"
 
-const int INIT_SIZE = 64;
-
+const int INIT_SIZE = 1<<6;
+const int ERROR = -99999999;
 void IntQueueTest() {
 	IntQueue int_queue;
 
@@ -46,9 +46,9 @@ void IntQueueTest() {
 }
 
 IntQueue::IntQueue() {
-	_size = INIT_SIZE;
+	_max = INIT_SIZE;
 	_head = _tail = 0;
-	_queue = new (std::nothrow) int[_size];
+	_queue = new (std::nothrow) int[_max];
 
 	if (_queue == nullptr) {
 		printf("Fail to new in initialize queue");
@@ -66,8 +66,8 @@ void IntQueue::reLocate() {
 }
 
 void IntQueue::upSizing() {
-	_size <<= 1;
-	int* tmp = new (std::nothrow) int[_size];
+	_max <<= 1;
+	int* tmp = new (std::nothrow) int[_max];
 	if (tmp == nullptr) {
 		printf("Fail to new in upSizing(IntQueue Class)");
 	}
@@ -85,7 +85,7 @@ int IntQueue::size() {
 }
 
 int IntQueue::max() {
-	return _size;
+	return _max;
 }
 
 bool IntQueue::isEmpty() {
@@ -93,7 +93,7 @@ bool IntQueue::isEmpty() {
 }
 
 bool IntQueue::isFull() {
-	return (_head == _size);
+	return (_head == _max);
 }
 
 void IntQueue::push(int obj) {
@@ -106,10 +106,18 @@ void IntQueue::push(int obj) {
 }
 
 void IntQueue::pop() {
+	if (isEmpty() == true) {
+		printf("Queue is empty");
+		return;
+	}
 	_tail++;
 }
 
 int IntQueue::top() {
+	if (isEmpty() == true) {
+		printf("Queue is empty");
+		return ERROR;
+	}
 	return _queue[_tail];
 }
 
@@ -124,5 +132,5 @@ void IntQueue::printObj() {
 void IntQueue::printStatus() {
 	printf("_head : %d\n", _head);
 	printf("_tail : %d\n", _tail);
-	printf("_size : %d\n", _size);
+	printf("_max : %d\n", _max);
 }

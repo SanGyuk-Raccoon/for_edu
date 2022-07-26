@@ -2,20 +2,19 @@
 #include <cstring>
 #include <stdio.h>
 
-void IntQueueTest();
+void IntStackTest();
 
-class IntQueue {
-private:
-	int* _queue;
+class IntStack {
+private :
+	int* _stack;
 	int _max;
-	int _head, _tail;
+	int _head;
 
-	void reLocate();
 	void upSizing();
 
 public:
-	IntQueue();
-	~IntQueue();
+	IntStack();
+	~IntStack();
 
 	void clear();
 	int size();
@@ -23,10 +22,9 @@ public:
 	bool isEmpty();
 	bool isFull();
 	void push(int obj);
-
-
 	void pop();
 	int top();
+
 	void printObj();
 	void printStatus();
 };

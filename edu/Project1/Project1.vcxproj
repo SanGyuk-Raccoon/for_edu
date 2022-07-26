@@ -125,10 +125,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="IntQueue.cpp" />
+    <ClCompile Include="IntStack.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IntQueue.h" />
+    <ClInclude Include="IntStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
